@@ -8,6 +8,7 @@ public final class ApiRoutes {
     // Rutas específicas
     public static final String CIUDAD = API_VERSION + "ciudades";
     public static final String CLIENTE = API_VERSION + "clientes";
+    public static final String LINEACREDITO = API_VERSION + "lineacredito";
 
 
 }

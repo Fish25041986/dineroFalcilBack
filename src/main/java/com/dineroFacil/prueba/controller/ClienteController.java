@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.dineroFacil.prueba.config.ApiRoutes;
 import com.dineroFacil.prueba.dto.ClienteDTO;
 import com.dineroFacil.prueba.dto.ClienteRequestDTO;
-import com.dineroFacil.prueba.entity.Cliente;
 import com.dineroFacil.prueba.services.ClienteService;
 
 @RestController

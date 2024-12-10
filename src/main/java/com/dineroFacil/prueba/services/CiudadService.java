@@ -20,6 +20,8 @@ import jakarta.transaction.Transactional;
 @Service
 public class CiudadService {
 
+	
+	//No se utiliza los Autowired para mostrar conocimiento
     private final IciudadRepository ciudadRepository;
     private final ValidateFindCiudadById validateFindCiudadById;
 
