@@ -13,7 +13,7 @@ public interface IclienteRepository extends JpaRepository<Cliente, Long>{
 	@Query("SELECT COUNT(c) > 0 FROM Cliente c WHERE c.numeroDocumento = :numeroDocumento")
 	boolean existsByNumeroDocumento(@Param("numeroDocumento") String numeroDocumento);
     
-    @Query(value = "SELECT COUNT(*) > 0 FROM Credito WHERE idCliente = :idCliente", nativeQuery = true)
-    boolean existsByCredito(@Param("idCliente") Long idCliente);
+	@Query(value = "SELECT EXISTS (SELECT 1 FROM credito WHERE idCliente = :idCliente)", nativeQuery = true)
+	Long existsByCredito(@Param("idCliente") Long idCliente);
 
 }

@@ -42,16 +42,16 @@ public class ClienteController {
 
 
     @PostMapping
-    public ResponseEntity<Cliente> createCliente(@RequestBody ClienteRequestDTO clienteRequestDTO) {
-    	Cliente clienteCreado = clienteService.createCliente(clienteRequestDTO);
-        return new  ResponseEntity<Cliente>(clienteCreado, HttpStatus.OK);
+    public ResponseEntity<ClienteDTO> createCliente(@RequestBody ClienteRequestDTO clienteRequestDTO) {
+    	ClienteDTO clienteCreado = clienteService.createCliente(clienteRequestDTO);
+        return new  ResponseEntity<ClienteDTO>(clienteCreado, HttpStatus.OK);
     }
 
 
     @PutMapping("/{idCliente}")
-    public ResponseEntity<Cliente> updateCliente(@PathVariable("idCliente") Long idCliente, @RequestBody ClienteRequestDTO clienteRequestDTO) {
-    	Cliente clientedActualizado = clienteService.updateCliente(idCliente, clienteRequestDTO);
-        return new ResponseEntity<Cliente>(clientedActualizado, HttpStatus.OK);
+    public ResponseEntity<ClienteDTO> updateCliente(@PathVariable("idCliente") Long idCliente, @RequestBody ClienteRequestDTO clienteRequestDTO) {
+    	ClienteDTO clientedActualizado = clienteService.updateCliente(idCliente, clienteRequestDTO);
+        return new ResponseEntity<ClienteDTO>(clientedActualizado, HttpStatus.OK);
     }
 
 

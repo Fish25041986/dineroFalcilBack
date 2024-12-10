@@ -26,7 +26,4 @@ public class ClienteDTO {
 		this.telefono = telefono;
 	}
 
-	
-	
-
 }

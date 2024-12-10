@@ -81,11 +81,10 @@ public class ClienteService {
      * @throws InternaServerErrorException Si ocurre un error al intentar guardar el cliente.
      */
     @Transactional
-    public Cliente createCliente(ClienteRequestDTO clienteRequestDTO) {
+    public ClienteDTO createCliente(ClienteRequestDTO clienteRequestDTO) {
     	
     	Cliente clienteSave;
     	
-    	System.out.println(clienteRequestDTO);
         
         // Valido si ya existe un cliente con el mismo numero de cedula
         boolean existe = clienteRepository.existsByNumeroDocumento(clienteRequestDTO.getNumeroDocumento());
@@ -106,15 +105,17 @@ public class ClienteService {
             throw new InternaServerErrorException("Ocurrió un error al convertir  el DTO entrante a cliente", "createCliente");
 		}
         
-        // Guardar el cliente
+        // Guardar el cliente y lo convierto a DTO
+        ClienteDTO clienteDTO;
         try {
         	clienteSave = clienteRepository.save(cliente);
+        	clienteDTO=clienteDtoConverte.clienteDTO(clienteSave);
         } catch (Exception e) {
             logger.error("Ocurrió un error al intentar guardar el cliente");
             throw new InternaServerErrorException("Fallo el proceso de guardar el cliente", "createCliente");
         }
         
-        return clienteSave;
+        return clienteDTO;
     }
 
     
@@ -128,7 +129,7 @@ public class ClienteService {
      * @throws InternaServerErrorException Si ocurre un error al intentar actualizar el cliente.
      */
     @Transactional
-    public Cliente updateCliente(Long idCliente, ClienteRequestDTO clienteRequestDTO) {
+    public ClienteDTO updateCliente(Long idCliente, ClienteRequestDTO clienteRequestDTO) {
     	
         // Validar existencia del cliente
     	Cliente clienteToUpdate = validateFindClienteById.findClienteById(idCliente);
@@ -144,15 +145,17 @@ public class ClienteService {
     	clienteToUpdate.setCiudad(ciudad);
     	clienteToUpdate.setTelefono(clienteRequestDTO.getTelefono()); 
 
-        //Guarda la modificación del cliente
+        //Guarda la modificación del cliente y convierto a DTO
+    	ClienteDTO clienteDTO;
         try {
         	clienteRepository.save(clienteToUpdate);
+        	clienteDTO=clienteDtoConverte.clienteDTO(clienteToUpdate);
         } catch (Exception e) {
             logger.error("Ocurrió un error al intentar modificar el cliente");
             throw new InternaServerErrorException("Fallo el proceso de modificar el cliente", "updateCliente");
         }
 
-        return clienteToUpdate;
+        return clienteDTO;
     }
 
     
@@ -171,7 +174,7 @@ public class ClienteService {
     	validateFindClienteById.findClienteById(idCliente);
 
         // Verificar si existen registros relacionados
-        if (clienteRepository.existsByCredito(idCliente)) {
+        if (clienteRepository.existsByCredito(idCliente)==1) {
             logger.error("No se puede eliminar el Cliente ya que existen registros relacionados");
             throw new InformationRelationalExceptions("No se puede eliminar el cliented debido a información relacionada", "deleteCliente");
         }

@@ -31,13 +31,13 @@ public class GlobalExceptionHandler {
 	    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
 	        ErrorResponse errorResponse = new ErrorResponse();
 	        errorResponse.setTimestamp(LocalDateTime.now());
-	        errorResponse.setStatus(HttpStatus.NO_CONTENT.value());
+	        errorResponse.setStatus(HttpStatus.NOT_FOUND.value());
 	        errorResponse.setPath(request.getDescription(false));
 	        errorResponse.setMensaje(ex.getMensaje());
 	        errorResponse.setMetodoEnError(ex.getMetodoEnError());
 	        errorResponse.setError(ex.getMessage());
 
-	        return new ResponseEntity<>(errorResponse, HttpStatus.NO_CONTENT);
+	        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
 	    }
 	 
 	 //Metodo para cuando se intenta elimnar informacion y esta tiene valores relacionados

@@ -11,9 +11,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @Entity
 @Table(name = "Clientes")
 public class Cliente implements Serializable{
@@ -43,4 +45,9 @@ public class Cliente implements Serializable{
 	@Column(name = "telefono", nullable = false, length = 20)
 	private String telefono;
 
+	public Cliente() {
+		super();
+	}
+
+	
 }

@@ -13,6 +13,8 @@ public class ClienteRequestDTO {
 	private String telefono;
 	
 	
+	
+	
 	public ClienteRequestDTO(String tipoDocumento, String numeroDocumento, String apellidos, String residencia,
 			Long idCiudad, String telefono) {
 		super();
@@ -23,7 +25,5 @@ public class ClienteRequestDTO {
 		this.idCiudad = idCiudad;
 		this.telefono = telefono;
 	}
-	
-	
 
 }

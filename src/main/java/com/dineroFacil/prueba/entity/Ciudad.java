@@ -9,9 +9,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
+@AllArgsConstructor
 @Entity
 @Table(name = "Ciudades")
 public class Ciudad implements Serializable{
@@ -28,5 +30,11 @@ public class Ciudad implements Serializable{
 
     @Column(name = "codigoCiudad", length = 10)
     private String codigoCiudad;
+
+	public Ciudad() {
+		super();
+	}
+    
+    
 
 }
